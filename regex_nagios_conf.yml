@@ -1,0 +1,22 @@
+---
+- name: edit Nagios conf files
+  hosts: localhost
+  become: yes
+  vars:
+    ip_adres: "10.0.0.60"
+
+  tasks:
+  - name: replace hostname in NRPE config
+    lineinfile:
+      path: /usr/local/nagios/etc/objects/nagiosConf/localhost.cfg
+      line: "define host {
+      use                     linux-server-NB         ; Name of host template to use
+                                                      ; This host definition will inherit all variables that are defined
+                                                      ; in (or inherited by) the linux-server host template definition.
+      host_name               client
+      alias                   client
+      address                 {{ ip_adres }}
+      }"
+      state: present
+      insertafter: "^Define a host for the local machine"
+

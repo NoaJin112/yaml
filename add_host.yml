@@ -1,0 +1,19 @@
+---
+- name: configure nagios client, (add server ip-adres)
+  hosts: server1
+  become: yes
+  vars:
+    ip_adres: "10.0.0.64"
+
+  tasks:
+  - name: replace hostname in NRPE config
+    lineinfile:
+      path: /etc/nagios/nrpe.cfg
+      line: "allowed_hosts={{ ip_adres }}"
+      state: present
+      insertafter: "$allowed_hosts="
+
+  - name: restart system nagios nrpe client
+    systemd:
+      name: nagios-nrpe-server
+      state: restarted

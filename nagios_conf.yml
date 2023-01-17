@@ -1,0 +1,60 @@
+---
+- name: Create directory -> copying conf files
+  hosts: localhost
+  become: yes
+
+  tasks:
+  - name: Create a directory if it does not exist
+    file:
+      path: /usr/local/nagios/etc/objects/nagiosConf
+      state: directory
+      mode: '0755'
+
+  - name: Template a file to ~/.contacts.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/contacts.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/contacts.cfg
+      mode: '0644'
+
+  - name: Template a file to ~/.commands.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/commands.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/commands.cfg
+      mode: '0644'
+
+  - name: Template a file to ~/.localhost.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/localhost.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/localhost.cfg
+      mode: '0644'
+
+  - name: Template a file to ~/.printer.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/printer.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/printer.cfg
+      mode: '0644'
+
+  - name: Template a file to ~/.switch.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/switch.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/switch.cfg
+      mode: '0644'
+
+  - name: Template a file to ~/.templates.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/templates.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/templates.cfg
+      mode: '0644'
+
+  - name: Template a file to ~/.timeperiods.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/timeperiods.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/timeperiods.cfg
+      mode: '0644'
+
+  - name: Template a file to ~/.windows.cfg
+    template:
+      src: /usr/local/nagios/etc/objects/windows.cfg
+      dest: /usr/local/nagios/etc/objects/nagiosConf/windows.cfg
+      mode: '0644'
+
